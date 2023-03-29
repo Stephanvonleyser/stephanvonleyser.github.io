@@ -1,0 +1,65 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bouncing Ball</title>
+        <style>
+            #ball {
+                z-index:5;
+                position: absolute;
+                left:0px;
+                top:0px;
+                width:50px;
+                height:50px;
+                border-radius:50%;
+                background:green;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div id="ball"></div>
+
+        <script>
+            var ball = document.getElementById('ball');
+            var positionX = 0;
+            var positionY = 0;
+            var velocityX = 5;
+            var velocityY = 5;
+            var acelerationX = 1;
+            var acelerationY = 1;
+            
+
+
+            function moving(){
+                const screenWidth = window.innerWidth - ball.clientWidth;
+                const screenHeight = window.innerHeight - ball.clientHeight;
+                positionX = positionX + velocityX;
+                positionY = positionY + velocityY;
+
+                if (positionX < 0 || positionX > screenWidth){
+                    velocityX = -velocityX
+                }
+
+                if (positionY < 0 || positionY > screenHeight){
+                    velocityY = -velocityY
+                }
+                ball.style.left = positionX + 'px';
+                ball.style.top = positionY + 'px';
+            }
+
+            setInterval(moving, 500)
+
+        </script>
+
+
+    </body>
+
+    
+
+
+</html>
+

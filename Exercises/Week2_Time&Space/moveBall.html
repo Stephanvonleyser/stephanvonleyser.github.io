@@ -10,10 +10,26 @@
 
 <script>
 
-var velocity = 5;
-var position = 0;
+var velocityX = 5;
+var velocityY = 5;
+var positionX = 0;
+var positionY = 0;
+var acelerationX = 1;
+var acelerationY = 1;
 var ball = document.getElementById('ball');
 
 // YOUR CODE 
 // ----------------
+
+function moving(){
+  positionX = positionX + velocityX;
+  positionY = positionY + velocityY;
+  ball.style.left = positionX + 'px';
+  ball.style.top = positionY + 'px';
+  //velocity = velocity + aceleration;
+}
+
+setInterval(moving, 3000)
+
+
 </script>
