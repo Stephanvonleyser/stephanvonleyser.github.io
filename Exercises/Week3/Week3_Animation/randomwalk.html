@@ -1,0 +1,50 @@
+<link rel="stylesheet" type="text/css" href="mystyle.css" />
+<body>
+  <script src="ball.js"></script>
+  <script>
+    const size = 30; // size of ball
+    const x = []; // position
+    const y = [];
+    const velocity_x = [];
+    const velocity_y = [];
+    const balls = []; // array to hold all free balls
+    let speed = 0; // wind speed
+    const stepSize = 5; // step size every update
+
+    function getRandom(step) {
+      // return value between +step and -step
+      return Math.random() * 2 * step - step;
+    }
+    function update() {
+      // the wind speed is added to x direction
+      for (let i = 0; i < balls.length; i++) {
+        x[i] += getRandom(stepSize) + speed;
+        y[i] += getRandom(stepSize);
+        balls[i].style.left = x[i];
+        balls[i].style.top = y[i];
+      }
+      setTimeout(update, 100); // this calls update ever 1/10 second
+    }
+    function factory(total) {
+      for (let i = 0; i < total; i++) {
+        makeBall(100, 300, "blue");
+        x[i] = 100;
+        y[i] = 300;
+      }
+    }
+    makeBall(100, 300, "red"); // show how to generate a fixed ball
+  </script>
+  <div class="svg-container">
+    <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect
+        x="0"
+        y="0"
+        width="840"
+        height="430"
+        stroke="black"
+        fill="transparent"
+        stroke-width="5"
+      />
+    </svg>
+  </div>
+</body>

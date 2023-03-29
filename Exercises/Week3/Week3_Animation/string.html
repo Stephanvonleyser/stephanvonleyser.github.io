@@ -1,0 +1,110 @@
+<html>
+  <style type="text/css">
+    /* Text Styles */
+    #Text {
+      font-style: italic;
+      font-weight: bold;
+      font-family: verdana, arial;
+      color: #000;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      cursor: default;
+    }
+    #Text div {
+      position: relative;
+    }
+    #Text div div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-align: center;
+    }
+  </style>
+  <body></body>
+  <script type="text/javascript">
+    var msg = "MIT boot-camp-----";
+    msg = msg.split("");
+    var n = msg.length - 1;
+    var size = 24;
+    var letter_spacing = 5;
+    var speed = 0.3;
+    var currStep = 20,
+      ymouse = 20,
+      xmouse = 20,
+      y = [],
+      x = [],
+      Y = [],
+      X = [],
+      parent = document.createElement("div"),
+      ap = document.createElement("div"),
+      bod = document.documentElement; // document.body
+    var mouse = function (e) {
+      ymouse = e.clientY;
+      xmouse = e.clientX;
+    };
+    function update() {
+      // first drags second and we all follow the mouse
+      y[0] = Y[0] += (ymouse - Y[0]) * speed;
+      x[0] = X[0] += (xmouse - 20 - X[0]) * speed;
+      for (let i = n; i > 0; --i) {
+        y[i] = Y[i] += (y[i - 1] - Y[i]) * speed;
+        x[i] = X[i] += (x[i - 1] - X[i]) * speed;
+      }
+      // update the divs
+      for (let d, i = n; i > -1; --i) {
+        d = document.getElementById("id" + i);
+        d.style.top = y[i];
+        d.style.left = x[i];
+      }
+      setTimeout(update, 100); // loop over update
+    }
+    var init = function () {
+      // appends message divs, & sets initial values for positioning arrays
+
+      for (let d, i = n; i > -1; --i) {
+        d = document.createElement("div");
+        d.id = "id" + i;
+        d.style.height = d.style.width = size;
+        d.appendChild(document.createTextNode(msg[i]));
+        ap.appendChild(d);
+        y[i] = x[i] = Y[i] = X[i] = 0;
+      }
+      parent.appendChild(ap);
+      document.body.appendChild(parent);
+      update();
+    };
+    parent.id = "Text";
+    parent.style.fontSize = size + "px";
+    if (window.addEventListener) {
+      window.addEventListener("load", init, false);
+      document.addEventListener("mousemove", mouse, false);
+    } else if (window.attachEvent) {
+      window.attachEvent("onload", init);
+      document.attachEvent("onmousemove", mouse);
+    }
+  </script>
+  <div class="svg-container">
+    <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <line
+        stroke="#5AB1BB"
+        stroke-width="2"
+        x1="0"
+        x2="830"
+        y1="430"
+        y2="430"
+      ></line>
+
+      <rect
+        x="0"
+        y="0"
+        width="840"
+        height="430"
+        stroke="black"
+        fill="transparent"
+        stroke-width="5"
+      />
+    </svg>
+  </div>
+</html>
