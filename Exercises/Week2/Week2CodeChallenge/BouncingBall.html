@@ -1,0 +1,100 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bouncing Ball coding challenge</title>
+        <style>
+            body {
+                background-color: black; 
+            }
+        </style>
+
+        <style>
+            .ball {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+        </style>
+  
+
+    </head>
+
+    <body>
+
+        <div id="ball1" class="ball" style="background-color: red;"></div>
+        <div id="ball2" class="ball" style="background-color: green;"></div>
+        <div id="ball3" class="ball" style="background-color: blue;"></div>
+
+        <script>
+
+            const ball1 = document.getElementById("ball1");
+            const ball2 = document.getElementById("ball2");
+            const ball3 = document.getElementById("ball3");
+
+            function randomColor() {
+                const letters = '0123456789ABCDEF';
+                    let color = '#';
+                    for (let i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }
+
+            function randomSpeed(min, max){
+                return Math.random() * (max - min) + min;
+            }
+
+
+
+            function initBall(ball){
+                let x = Math.random() * (window.innerWidth - ball.clientWidth);
+                let y = Math.random() * (window.innerHeight - ball.clientHeight);
+                let xSpeed = randomSpeed(2,15);
+                let ySpeed = randomSpeed(2,15);
+                
+
+                function moveBall(){
+                    const screenWidth = window.innerWidth - ball.clientWidth;
+                    const screenHeight = window.innerHeight - ball.clientHeight;
+
+                    x += xSpeed;
+                    y += ySpeed;
+
+                    if (x < 0 || x > screenWidth) {
+                        xSpeed = -xSpeed;
+                        ball.style.backgroundColor = randomColor();
+                        xSpeed = randomSpeed(1, 4) * Math.sign(xSpeed);
+                        
+                    }
+
+                    if (y < 0 || y > screenHeight) {
+                        ySpeed = -ySpeed;
+                        ball.style.backgroundColor = randomColor();
+                        xSpeed = randomSpeed(1, 4) * Math.sign(xSpeed);
+                    }
+
+                    ball.style.left = x + "px";
+                    ball.style.top = y + "px";
+
+                }
+                
+                setInterval(moveBall, 10)
+            }
+            
+            initBall(ball1);
+            initBall(ball2);
+            initBall(ball3);
+
+        </script>
+
+
+    </body>
+
+    
+
+
+</html>
+
