@@ -1,0 +1,67 @@
+<link rel="stylesheet" type="text/css" href="mystyle.css" />
+<body>
+  <script src="ball.js"></script>
+  <script>
+    const size = 20; // size of ball
+    const x = []; // position
+    const y = [];
+    const stepsize = 10;
+    const balls = []; // array to hold all free balls
+    let velocity_x = [];
+    let velocity_y = [];
+    let gravity = 1;
+
+    function checkWalls(i) {
+      if (x[i] < 0) velocity_x[i] = -velocity_x[i];
+      if (x[i] + size > 800) {
+        velocity_x[i] = -velocity_x[i];
+        x[i] = 800 - size;
+      }
+      if (y[i] + size > 400) {
+        velocity_y[i] = -velocity_y[i];
+        y[i] = 400 - size;
+      } else if (y[i] < 0) {
+        y[i] = 0;
+        velocity_y[i] = -velocity_y[i];
+      }
+    }
+
+    function update() {
+      for (let i = 0; i < balls.length; i++) {
+        x[i] += velocity_x[i];
+        velocity_y[i] += gravity;
+        y[i] += velocity_y[i];
+        checkWalls(i);
+        balls[i].style.left = x[i];
+        balls[i].style.top = y[i];
+      }
+      setTimeout(update, 10); // this calls update ever 1/10 second
+    }
+    function getRandom(scale) {
+      return Math.floor(Math.random() * scale - scale / 2);
+    }
+    function factory(total) {
+      // check how make balls exist already and add to the array
+      let n = balls.length;
+      for (let i = 0; i < total; i++) {
+        let velx = getRandom(stepsize);
+        let vely = getRandom(stepsize);
+        makeBall(400 - size / 2, 200 - size / 2, "blue", velx, vely, 0);
+        makeBall(400 - size / 2, 200 - size / 2, "red", -velx, -vely, 0);
+      }
+    }
+  </script>
+  <div class="svg-container">
+    <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect
+        x="0"
+        y="0"
+        width="800"
+        height="400"
+        stroke="black"
+        fill="transparent"
+        stroke-width="5"
+      />
+    </svg>
+  </div>
+</body>
