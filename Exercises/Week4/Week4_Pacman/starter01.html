@@ -21,6 +21,8 @@
             pos += 20;
             img.style.left = pos + 'px';
         }
+        
+        setTimeout(Run, 200);
         // Use setTimeout to call Run every 200 millesecs
     }
 
@@ -28,6 +30,11 @@
         //
         // Complete this to reverse direction on hitting page bounds
         // 
+        const screenWidth = window.innerWidth - imgWidth ;
+
+        if (direction == 0 && pos > screenWidth) direction = 1;
+        if (direction == 1 && pos < 0) direction = 0;
+
         return direction;
     }
 </SCRIPT>
