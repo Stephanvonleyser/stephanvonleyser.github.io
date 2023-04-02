@@ -14,10 +14,11 @@ let matching;
 let obj;
 
 function graffitiReports(zip) {
-	matching = chicago.data.filter(function(report){
+	matching = chicago.data.filter(function(report){ 
 		// ---------------------------
 		//		YOUR CODE
 		// ---------------------------
+		return report[16]===zip;
 	});
 
 	obj = {};
