@@ -1,0 +1,2 @@
+repeat the salary exercise for the city of chicago
+(the one where you sort the salary data)
