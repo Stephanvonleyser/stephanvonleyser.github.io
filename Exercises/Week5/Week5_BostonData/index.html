@@ -1,17 +1,65 @@
 <div id="container">
   <!-- populated by JS-->
 </div>
-<script src="./posts.js"></script>
+<script src="./boston.js"></script>
 <script>
-  function renderPosts(posts, container) {
-    const len = posts.length; // posts is an array
+  function renderBoston(boston, container) {
+    var person = boston.data;
+    const len = boston.data.length; // boston is an array
     var html = '';
     for (let i = 0; i < len; i++) {
       html += '<li class="post">' +
-        '<h2>' + posts[i].title + '</h2>' +
-        '<h3>' + posts[i].content + '</h3>'
+        '<h2>' + person[i][8] + '</h2>' +
+        '<h3> Regular: ' + person[i][11] + '</h3>' +
+        '<h3> Over: ' + person[i][14] + '</h3>' +
+        '<h3> Total Earnings: ' + person[i][18] + '</h3>';
     }
-    container.innerHTML = '<ul id = "posts">' + html + '</ul>';
+
+    //container.innerHTML = '<ul id = "boston">' + html + '</ul>';
   }
-  renderPosts(posts, document.getElementById('container'));
+
+  //renderBoston(boston, document.getElementById('container'));
+
+  function renderTopSalarios(boston, container) {
+    var person = boston.data;
+    var topCincoSalarios = person.sort((a,b) => (b[11] + b[14]) - (a[11] + a[14])).slice(0,5);
+    const len = topCincoSalarios.length;
+    var html = '<h2>Boston\'s Top 5 Earners</h2>' +
+              '<p>(regular salary + overtime)</p>' +
+              '<table><tr><th>Position</th><th>Name</th><th>Total Earned</th></tr>';
+    for (let i = 0; i < len; i++) {
+      html += '<tr>' +
+        '<td>' + (i + 1) + '</td>' +
+        '<td>' + topCincoSalarios[i][8] + '</td>' +
+        '<td>' + topCincoSalarios[i][11] + '</td>' +
+        '</tr>';
+    } 
+    html += '</table>';
+    
+    container.innerHTML = '<ul id = "TopSalarios">' + html + '</ul>';
+
+  }
+
+  renderTopSalarios(boston, document.getElementById('container'));
+
+  function renderOverThousand(boston, container) {
+    var person = boston.data;
+    const len = person.length;
+    var count = 0;
+    let thousand = 100000;
+    for (let i = 0; i < len; i++) {
+      if(person[i][18] > thousand){ count++;}
+    }
+    var html = `<p> Number of people working in Boston earning over $100,000 is ${count} </p> 
+      <p> Based on total earnings </p>
+    `; 
+
+    container.innerHTML +=  html;
+
+  }
+
+  renderOverThousand(boston,document.getElementById('container'));
+
+
+
 </script>
