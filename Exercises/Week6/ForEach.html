@@ -8,12 +8,16 @@ const employees = [
     {name: 'hanna', salary: '250000' }
 ];
 
+let salaries = 0;
+
 function add(item, counter, array) {
-    console.log(item);
+    //console.log(item);
+    salaries += Number(item.salary);
 
 }
 
-emplayees.forEach(add);
+employees.forEach(add);
+console.log(salaries);
 
 
 
