@@ -2,22 +2,23 @@
   <script>
     window.onload = function () {
       const slot = document.getElementById("div1");
-      var time = 30;
+      let time = 10;
+      let timerId;
 
       const getTime = () => {
-        time = time - 1;
-        slot.innerHTML = 'Goodbye Aliens: Ship leaves in ' + time + ' seconds';
+        time--;
+        slot.innerHTML = `Goodbye Aliens: Ship leaves in ${time} seconds`;
 
         if (time <= 0) {
           clearInterval(timerId);
-          document.body.style.backgroundColor = 'red';
-          slot.innerHTML = 'Ship has departed! Thanks for visiting!';
+          document.body.style.backgroundColor = "red";
+          slot.innerHTML = "Ship has departed! Thanks for visiting!";
         }
       };
-      // set initial message
-      slot.innerHTML = 'Goodbye Aliens: Ship leaves in ' + time + ' seconds';
-      setInterval(getTime, 1000);
-      
+
+      slot.innerHTML = `Goodbye Aliens: Ship leaves in ${time} seconds`;
+      timerId = setInterval(getTime, 1000);
+
     };
   </script>
   <body>
