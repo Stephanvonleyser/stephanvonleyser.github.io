@@ -1,0 +1,22 @@
+<html>
+  <script>
+    
+    window.onload = function () {
+      const slot = document.getElementById("div1");
+      var time = 30;
+      const getTime = () => {
+        time = time - 1;
+        slot.innerHTML = 'Goodbye Aliens: Ship leaves in ' + time + 'seconds';
+      }
+
+      //slot.innerHTML = "Hello World";
+      setInterval(getTime, 500);
+    };
+
+  </script>
+  <body>
+    <div>
+      <h1 id="div1">Hello Earthling</h1>
+    </div>
+  </body>
+</html>
