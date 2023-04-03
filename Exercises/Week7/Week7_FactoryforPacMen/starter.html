@@ -25,22 +25,21 @@
         newimg.style.position = 'absolute';
         newimg.src = 'PacMan1.png';
         newimg.width = 100;
-        //
-        // set position here 
-        //
+        
+        newimg.style.left = position.x;
+        newimg.style.top = position.y;
 
-        // add new Child image to game
-        game.appendChild( ? ? ? );
-        // return details in an object
+        game.appendChild(newimg);
+
         return {
             position,
             velocity,
-            newimg
+            newimg,
+            direction: 0
         }
     }
 
     function update() {
-        //loop over pacmen array and move each one and move image in DOM
         pacMen.forEach((item) => {
             checkCollisions(item)
             item.position.x += item.velocity.x;
@@ -53,9 +52,22 @@
     }
 
     function checkCollisions(item) {
-        //
-        // detect collision with all walls and make pacman bounce
-        //
+        let imgWidth = item.newimg.width;
+        let imgHeight = item.newimg.height;
+        let maxX = window.innerWidth - imgWidth;
+        let maxY = window.innerHeight - imgHeight;
+
+        if (item.position.x >= maxX || item.position.x <= 0) {
+            item.velocity.x = -item.velocity.x;
+            item.direction = 1 - item.direction;
+        }
+        if (item.position.y >= maxY || item.position.y <= 0) {
+            item.velocity.y = -item.velocity.y;
+        }
+
+        let direction = item.direction === 0 ? 0 : 1;
+        let frame = (item.position.x % 2 < 1) ? 0 : 1;
+        item.newimg.src = pacArray[direction][frame];
     }
 
     function makeOne() {
