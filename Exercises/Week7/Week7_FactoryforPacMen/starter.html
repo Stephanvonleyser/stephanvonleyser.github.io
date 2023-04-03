@@ -35,7 +35,8 @@
             position,
             velocity,
             newimg,
-            direction: 0
+            direction: 0,
+            frameCounter: 0 // Add a frame counter for each PacMan
         }
     }
 
@@ -65,8 +66,9 @@
             item.velocity.y = -item.velocity.y;
         }
 
+        item.frameCounter++; // Increment the frame counter
         let direction = item.direction === 0 ? 0 : 1;
-        let frame = (item.position.x % 2 < 1) ? 0 : 1;
+        let frame = (item.frameCounter % 10 < 5) ? 0 : 1; // Update the frame based on the frame counter
         item.newimg.src = pacArray[direction][frame];
     }
 
