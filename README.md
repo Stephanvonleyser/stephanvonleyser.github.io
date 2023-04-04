@@ -6,7 +6,9 @@ My name is Stephan, and I'm passionate about learning new technologies, programm
 
 ## Repository Contents
 
-This repository contains various projects and learning materials 
+This repository contains various projects and learning materials organized in the following way:
+
+- 'Exercises/': This directory contains sub-directories with some coding excercises ordered by week 
 
 ## Get in Touch
 
