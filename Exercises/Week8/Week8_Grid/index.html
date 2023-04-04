@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Grid</title>
+    <style>
+        .content{
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: 2fr 1fr 1fr 2fr;
+            gap: 5px;
+        }
+        div{
+            background: cadetblue;
+            padding: 30px;
+            text-align: center;
+        }
+        div:nth-of-type(odd){
+            background: burlywood;
+        }
+
+    </style>
+  </head>
+  <body>
+    <main class="content">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div> 
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </main>
+
+  </body>
+</html>

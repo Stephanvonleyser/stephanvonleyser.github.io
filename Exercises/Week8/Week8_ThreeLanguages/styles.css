@@ -1,0 +1,8 @@
+h1{
+    font-size: 5em;
+    color: red;
+}
+
+/* Note: not using style tag because it is a styles.css file
+    File can have any name; above is convention.
+*/
