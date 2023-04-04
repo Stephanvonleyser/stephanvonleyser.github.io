@@ -1,0 +1,23 @@
+<script>
+
+function resoveAfter2Seconds(){
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('resolved');
+        }, 2000);
+    });
+}
+
+async function asyncCal(){
+    console.log('calling');
+    const result = await resoveAfter2Seconds();
+    console.log(result);
+}
+asyncCal();
+
+
+
+
+
+
+</script>
