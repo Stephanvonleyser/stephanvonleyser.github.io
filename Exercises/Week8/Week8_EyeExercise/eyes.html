@@ -5,14 +5,17 @@
     <div class="eyes">
       <div class="eye">
         <div class="ball"></div>
+          <div class="pupil"></div>
       </div>
       <div class="eye">
         <div class="ball"></div>
+          <div class="pupil"></div>
       </div>
     </div>
   </body>
   <script>
     var balls = document.getElementsByClassName("ball");
+    var pupils = document.getElementsByClassName("pupil");
     document.onmousemove = () => {
       var x = (event.clientX * 100) / window.innerWidth + "%";
       var y = (event.clientY * 100) / window.innerHeight + "%";
@@ -21,6 +24,10 @@
         balls[i].style.left = x;
         balls[i].style.top = y;
         balls[i].transfoorm = "translate(-" + x + ",-" + y + ")";
+
+        pupils[i].style.left = x;
+        pupils[i].style.top = y;
+        pupils[i].style.transform = "translate(-" + x + ",-" + y + ")";
       }
     };
   </script>
