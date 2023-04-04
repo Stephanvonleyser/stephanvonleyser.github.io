@@ -1,0 +1,40 @@
+<script>
+
+    function a() {
+        return new Promise(function(resolve){
+            setTimeout(function(){
+                resolve('a');
+            }, 3000);
+        });
+    }
+
+    function b() {
+        return new Promise(function(resolve){
+            setTimeout(function(){
+                resolve('b');
+            }, 3000);
+        });
+    }
+
+    function c() {
+        return new Promise(function(resolve){
+            setTimeout(function(){
+                resolve('c');
+            }, 3000);
+        });
+    }
+
+
+    const list = [a, b, c];
+
+    (async function(){
+        for (fn of list){
+        const result = await fn();
+        console.log(result);
+        }
+    })();
+
+
+
+
+</script>
