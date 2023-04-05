@@ -1,0 +1,32 @@
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls {
+    margin: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(50, 1fr);
+    grid-template-rows: repeat(50, 1fr);
+    gap: 1px;
+    background-color: black;
+}
+
+.cell {
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
+    background-color: grey;
+}
+
+.cell.alive {
+    background-color: var(--selected-color, white);
+}
