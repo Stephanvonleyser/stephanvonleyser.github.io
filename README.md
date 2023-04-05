@@ -2,7 +2,7 @@
 Hi, welcome to my own little test space in the infinite plasma of the internet.
 
 ## About me
-My name is Stephan, and I'm passionate about learning new technologies, programming languages, and frameworks. I'm always eager to explore new areas of interest and expand my skills. In this personal portfolio repository, I'll be sharing the projects I've built along the way, as well as any other interesting code snippets or experiments.
+My name is Stephan, I'm deeply passionate about exploring new technologies, programming languages, and scientific discoveries. When I'm not immersed in the world of engineering, you can find me practicing Kung Fu or hiking through the majestic Andes, seeking adventure and balance in both my personal and professional life In this personal portfolio repository, I'll be sharing the projects I've built along the way, as well as any other interesting code snippets or experiments.
 
 ## Repository Contents
 
