@@ -8,14 +8,18 @@ const colorSelector = document.getElementById("color");
 const gridSize = 50;
 let isRunning = false;
 let intervalId;
+let mouseDown = false; // Track mouse click held down
 
 // Create cells in the grid
+// Event listeners for each cell
 function createGrid() {
     for (let i = 0; i < gridSize * gridSize; i++) {
         const cell = document.createElement("div");
         cell.className = "cell";
         cell.dataset.index = i;
-        cell.addEventListener("click", toggleCell);
+        cell.addEventListener("mousedown", toggleCell);
+        cell.addEventListener("mousemove", handleMouseMove);
+        cell.addEventListener("mouseup", handleMouseUp);
         grid.appendChild(cell);
     }
 }
@@ -24,6 +28,26 @@ function toggleCell(e) {
     const cell = e.target;
     cell.classList.toggle("alive");
 }
+
+// Handle mouse movement
+function handleMouseMove(e) {
+    if (!mouseDown) return;
+    toggleCell(e);
+}
+
+// Just for learning purposes, mouse up is a called function while mouse down is an anonymouse function.
+function handleMouseUp(e) {
+    mouseDown = false;
+}
+
+// Add event listeners for mousedown and mouseup events to the whole document
+// Just for learning purposes, mouse down is an anonymouse function while mouse up is a called function.
+document.addEventListener("mousedown", (e) => {
+    mouseDown = true;
+});
+
+document.addEventListener("mouseup", handleMouseUp);
+
 
 // Function accepts an index (a 1D representation of the 2D grid) and calculates the indices of its neighboring cells.
 // Each row contains 50 cells, thus index +gridSize is the same position in next row
