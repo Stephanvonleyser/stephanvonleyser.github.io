@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Add Styles</title>
+
+        <!-- Dont use this in Production: -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+    
+
+        
+        <!-- target element used by react -->
+        <div id="root"></div>
+
+        <!-- load react -->
+
+        <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+
+        <!-- load react component -->
+        <script  defer type="text/babel">
+            const user = {
+                firstName: 'Peter',
+                lastName: 'Parker'
+            }
+
+            const style = {
+                fontFamily: 'Arial',
+                color: 'green'
+            }
+
+            function formatName(user){
+                return user.firstName + ' ' + user.lastName;
+            }
+
+            const element = (
+                <h1 style={style}>
+                    Hello, {formatName(user)}
+                </h1>
+            )
+            
+
+            ReactDOM.render(
+                element,
+                document.getElementById('root')
+            )
+
+        </script>
+
+
+
+    </body>
+
+</html>

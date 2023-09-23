@@ -3,15 +3,16 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Template</title>
+        <title>Hello</title>
 
         <!-- Dont use this in Production: -->
-        <script src="https://unpkg.com/@bable/standalone/babel.min.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     </head>
     <body>
-        <h1>Template</h1>
+    
 
         <!-- we will put our react component inside this div -->
+        <!-- target -->
         <div id="root"></div>
 
         <!-- load react -->
@@ -21,7 +22,13 @@
 
         <!-- load our react component -->
 
-        <script src="index.js" defer type="text/babel"></script>
+        <script  defer type="text/babel">
+
+            ReactDOM.render(
+                <h1>Hello World!!!</h1>,
+                document.getElementById('root')
+            )
+        </script>
 
 
 

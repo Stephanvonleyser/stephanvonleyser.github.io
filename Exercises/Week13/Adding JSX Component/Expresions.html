@@ -3,15 +3,16 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Template</title>
+        <title>Expressions</title>
 
         <!-- Dont use this in Production: -->
-        <script src="https://unpkg.com/@bable/standalone/babel.min.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     </head>
     <body>
-        <h1>Template</h1>
+    
 
-        <!-- we will put our react component inside this div -->
+        
+        <!-- target element used by react -->
         <div id="root"></div>
 
         <!-- load react -->
@@ -19,9 +20,16 @@
         <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
 
-        <!-- load our react component -->
+        <!-- load react component -->
+        <script  defer type="text/babel">
+            const name = 'Peter Parker';
+            const element = <h1>Hello, {name}</h1>;
 
-        <script src="index.js" defer type="text/babel"></script>
+            ReactDOM.render(
+                element,
+                document.getElementById('root')
+            )
+        </script>
 
 
 
