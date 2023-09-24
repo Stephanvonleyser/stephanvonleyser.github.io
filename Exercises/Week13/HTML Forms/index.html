@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Sign Up</title>
+    </head>
+    <body>
+        <select id="year">
+            <option>Freshman</option>
+            <option>Sophmore</option>
+            <option>Junior</option>
+            <option>Senior</option>
+        </select>
+        <div>Name</div>
+        <input type="text" id="name">
+        <div>Email</div>
+        <input type="text" id="email">
+        <div>Password</div>
+        <input type="text" id="password">
+        <div>
+            <input type="checkbox" id="checkbox"> Remember me
+        </div>
+        <button onclick="handle()">Submit</button>
+        <script>
+            function handle(){
+                console.log(document.getElementById('year').value);
+                console.log(document.getElementById('name').value);
+                console.log(document.getElementById('email').value);
+                console.log(document.getElementById('password').value);
+                console.log(document.getElementById('checkbox').checked);
+            }
+
+
+        </script>
+    
+    </body>
+</html>
