@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Sign Up Form Tag</title>
+    </head>
+    <body>
+        <form id="form">
+            <select id="year">
+                <option>Freshman</option>
+                <option>Sophmore</option>
+                <option>Junior</option>
+                <option>Senior</option>
+            </select>
+            <div>Name</div>
+            <input type="text" id="name">
+            <div>Email</div>
+            <input type="text" id="email">
+            <div>Password</div>
+            <input type="text" id="password">
+            <div>
+                <input type="checkbox" id="checkbox"> Remember me
+            </div>
+            <button onclick="handle(event)">Submit</button>
+        </form>
+        <script>
+            function handle(e){
+                console.log(e.target.form.elements);
+                console.log(e.target.form.elements.year.value);
+                console.log(e.target.form.elements.name.value);
+                console.log(e.target.form.elements.email.value);
+                console.log(e.target.form.elements.password.value);
+                console.log(e.target.form.elements.checkbox.checked);
+                event.preventDefault();
+            }
+
+
+        </script>
+    
+    </body>
+</html>
