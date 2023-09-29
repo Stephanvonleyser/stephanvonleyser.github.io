@@ -1,29 +1,47 @@
-const Square = ({ id, player }) => {
+const Square = ({ id, player, newState }) => {
   const [color, setColor] = React.useState("green");
   const palet = ["red", "blue", "green"];
   const getRandomColor = () => palet[Math.floor(Math.random() * 3)];
 
+  React.useEffect(() => {
+    console.log(`Render ${id}`);
+    return () => console.log(`unmounting Square ${id} `);
+  });
+  //keep track of state of the Square
+
   return (
     <button
       onClick={(e) => {
-        setColor(getRandomColor());
-        e.target.style.background = color;
+        let col = getRandomColor();
+        setColor(col);
+        newState({id:id, color:col})
+        e.target.style.background = col;
       }}
     >
-      <h1>{player}</h1>
+      <h1>{id}</h1>
     </button>
   );
 };
 
 const Board = () => {
   const [player, setPlayer] = React.useState(1);
+  const [state, setState] = React.useState([]); //total state of game
+
+
+  const newState = (ob)=>{
+    setState([...state, ob]);
+    console.log(`adding state ${JSON.stringify(ob)}`)
+  }
+
+
   const [mounted, setMounted] = React.useState(true);
+  const [random, setRandom] = React.useState(0);
   let status = `Player ${player}`;
   const toggle = () => setMounted(!mounted);
-
+  const reRender = () => setRandom(Math.random());
 
   function renderSquare(i) {
-    return <Square id={i} player={player}></Square>;
+    return <Square id={i} player={player} newState={newState}></Square>;
   }
   return (
     <div
@@ -40,6 +58,7 @@ const Board = () => {
       </div>
       <div id="info">
         <button onClick={toggle}>Show/Hide Row</button>
+        <button onClick={reRender}>Re-Render</button>
         <h1>{status}</h1>
       </div>
     </div>
