@@ -56,6 +56,16 @@ const Board = () => {
         {mounted && renderSquare(1)}
         {mounted && renderSquare(2)}
       </div>
+      <div className="grid-row">
+        {mounted && renderSquare(3)}
+        {mounted && renderSquare(4)}
+        {mounted && renderSquare(5)}
+      </div>
+      <div className="grid-row">
+        {mounted && renderSquare(6)}
+        {mounted && renderSquare(7)}
+        {mounted && renderSquare(8)}
+      </div>
       <div id="info">
         <button onClick={toggle}>Show/Hide Row</button>
         <button onClick={reRender}>Re-Render</button>
