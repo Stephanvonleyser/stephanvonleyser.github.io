@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+</head>
+<body>
+
+<!-- ------------------ NAVBAR ------------------ -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+<style>
+  .text-primary{
+    font-size: 1.5em; 
+  }
+</style>
+<div class="container" style="margin-top: 20px">
+  <a href="#/home" class="text-primary">Home</a>,   
+  <a href="#/signin" class="text-primary">Sign In</a>, 
+  <a href="#/blog" class="text-primary">Blog</a>, 
+  <a href="#/pricing" class="text-primary">Pricing</a>  
+  <div id="content"></div>
+
+</div>
+
+<script>
+    var history = '';
+
+    var routes = {
+        '':          'home.html',     
+        '/':         'home.html',
+        '#/home':    'home.html',                
+        '#/signin':  'signin.html',        
+        '#/blog':    'blog.html',
+        '#/pricing': 'pricing.html',
+    };
+
+    async function router(){
+        console.log(location.hash);
+        var innerElement = '';
+
+        // get requested page
+        var link = window.location.hash;
+
+        // ----------------------------------------
+        // If more than one parameter in the link, 
+        // I am targeting an element in the page, 
+        // an anchor. First load page, the scroll
+        // the element into view.
+        // ----------------------------------------
+
+        var count = (link.split("/").length - 1);        
+        if (count > 1) {
+            // anchor element 
+            innerElement = link.split("/")[2];            
+
+            // page to load
+            link = '#/' + link.split("/")[1];
+        }
+
+        // ----------------------------------------
+        // Remember loaded page - used to avoid
+        // page reload on internal linking
+        // ----------------------------------------        
+        if (history === link && innerElement){
+            scrollIntoView(innerElement);
+            history = link;
+            return;            
+        }
+        history = link;  
+
+        // get path (route) for page
+        var route = routes[link];
+
+        // if route exists, load page
+        if (route) loadPage(route, innerElement);
+    };
+    router();
+
+    async function loadPage(url, innerElement){
+        // load page
+        const res     = await fetch(url);
+        const content = await res.text();
+        const element = document.getElementById('content');
+        element.innerHTML = content;
+
+        // ------------------------------------------
+        // Scroll to top -- need to avoid navigation 
+        // drift on page. Else the scroll state 
+        // carries over on to next page
+        // ------------------------------------------
+        window.scrollTo(0, 0);
+
+
+        // element scroll into view
+        if (innerElement) {            
+            scrollIntoView(innerElement);
+        }        
+    }
+
+    function scrollIntoView(id){
+        document.getElementById(id).scrollIntoView();
+    }
+
+    window.addEventListener('hashchange', router);    
+  
+</script>
+  
+</body>
+</html>
