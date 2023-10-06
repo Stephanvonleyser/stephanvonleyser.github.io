@@ -1,0 +1,32 @@
+Build image
+# The -t gives your image a name
+$ docker build -t YourImageName.
+
+List Containers
+# Containers currently running
+$ docker ps -a
+
+List Images
+# List all Docker images
+$ docker images -a
+
+Delete containers
+# Delete every Docker container
+# Run this command first because images are attached to containers
+$ docker rm $(docker ps -a -q)
+
+Delete images
+# Delete every Docker image
+$ docker rmi $(docker images -q)
+
+Force delete images
+# to force delete images to prevent their use
+$ docker rmi -f $(docker images -q)
+
+Stop container
+# Stop a container
+$ docker stop <container id>
+
+Shell in running container
+# From Docker 1.3 onwards
+$ sudo docker exec -i -t <containerIdOrName> bash
